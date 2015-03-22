@@ -1,0 +1,21 @@
+{
+  "name": "project-init-php",
+  "version": "0.0.1",
+  "authors": [
+    "Andrew R McHugh <arm5629@gmail.com>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "animate.css": "~3.2.0",
+    "bootstrap": "~3.3.2",
+    "fixie": "ryhan/fixie",
+    "holderjs": "~2.5.0"
+  }
+}
