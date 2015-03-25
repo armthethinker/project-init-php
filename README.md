@@ -1,4 +1,4 @@
-# project-init-php
+# project-init-php - *In Progress*
 This is a personal repository used to seed new apps written in PHP.
 
 ## Build Tasks
