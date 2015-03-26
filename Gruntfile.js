@@ -66,7 +66,10 @@ module.exports = function(grunt) {
          //    dest: 'dist/css/'
          // },
       },
-      clean: ["dist/*"],
+      clean: {
+         dist: ["dist/*"],
+         gitprep: ['dist', 'bower_components', 'node_modules']
+      },
       less: {
          mixin: {
             options: {
@@ -165,12 +168,18 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-text-replace');
    //img-min //SETUP
 
+   // Meta-task runners
+   grunt.registerTask('copy-stack', ['copy:fonts', 'copy:select2']);
+
    //Slim task runners
    grunt.registerTask('default', ['less:dev', 'concat:js', 'watch']);
    grunt.registerTask('css', ['less:dev', 'concat:css', 'replace', 'autoprefixer', 'watch']);
    grunt.registerTask('js', ['concat:js', 'watch']);
 
    //Production ready task runners
-   grunt.registerTask('full', ['clean', 'copy', 'less', 'concat', 'replace', 'autoprefixer', 'cssmin', 'uglify']);
+   grunt.registerTask('full', ['clean:dist', 'copy-stack', 'less', 'concat', 'replace', 'autoprefixer', 'cssmin', 'uglify']);
+   grunt.registerTask('reallyfull', ['full']);
    grunt.registerTask('deploy', ['sftp-deploy']);
+
+   grunt.registerTask('gitprep', ['clean:gitprep']);
 };
