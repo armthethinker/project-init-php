@@ -14,7 +14,7 @@ npm install
 bower update
 grunt full
 ```
-All of your files shoudl be set up and ready to go!
+All of your files should be set up and ready to go!
 
 ## Components
 This project uses bower to pull down other repos and put the files in their new home.
