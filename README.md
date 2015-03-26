@@ -12,7 +12,7 @@ Next, run a few tasks to initialize the project.
 ```
 npm install
 bower update
-grunt full
+grunt reallyfull
 ```
 All of your files should be set up and ready to go!
 
@@ -44,3 +44,6 @@ This project uses bower to pull down other repos and put the files in their new 
 - HolderJS
 - FixieJS
 - UIFunk (*soon*)
+
+## Le Build
+On the initial run, Grunt pulls things out of <code>/bower_components/<code> and fills the CSS and JS folders with plugins, etc.
