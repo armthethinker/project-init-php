@@ -83,7 +83,7 @@ module.exports = function(grunt) {
       },
       clean: {
          dist: ["dist/*"],
-         gitprep: ['dist', 'bower_components', 'node_modules'],
+         cleanup: ['dist', 'bower_components', 'node_modules'],
          preBuild: ['css/built-*']
       },
       less: {
@@ -227,6 +227,6 @@ module.exports = function(grunt) {
    grunt.registerTask('deploy', ['sftp-deploy:deploy']);
    grunt.registerTask('deployjs', ['sftp-deploy:js']);
 
-   // Git preparation
-   grunt.registerTask('gitprep', ['clean:gitprep']);
+   // Cleanup
+   grunt.registerTask('cleanup', ['clean:cleanup']);
 };

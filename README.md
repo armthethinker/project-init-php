@@ -63,6 +63,9 @@ Deploys all code except for <code>/img/</code>, via SFTP, to the specified serve
 
 You'll need to set up a <code>.ftppass</code> with your magic username and password in it. Rename <code>.ftppass-template</code> to <code>.ftppass</code> and follow the instructions. Don't worry, Git will ignore your password.
 
+### <code>$ grunt cleanup</code>
+Cleans your folder tree of <code>/bower_components/</code>, <code>/node_modules/</code>, and <code>/dist/</code>.
+
 ### Grunt Tasks
 - <a href="https://github.com/nDmitry/grunt-autoprefixer">Autoprefixer</a>: vendor prefixes for CSS, adds and removes based on the browser variable.
 - <a href="https://github.com/gruntjs/grunt-contrib-clean">Contrib-Clean</a>: cleans files and folders.
