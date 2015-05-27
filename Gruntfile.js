@@ -5,7 +5,7 @@ module.exports = function(grunt) {
       pkg: grunt.file.readJSON('package.json'),
 
       banner: '/*!\n' +
-      ' * <%= pkg.name %> v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
+      ' * <%= pkg.gname %> v<%= pkg.version %> (<%= pkg.homepage %>)\n' +
       ' * Copyright 2015-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
       ' */\n',
       concat: {
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
       uglify: {
          dist: {
             files: {
-               'dist/js/<%= pkg.name %>-v<%= pkg.version %>.min.js': ['dist/js/<%= pkg.name %>-v<%= pkg.version %>.js']
+               'dist/js/<%= pkg.gname %>-v<%= pkg.version %>.min.js': ['dist/js/<%= pkg.gname %>-v<%= pkg.version %>.js']
             }
          }
       },
@@ -83,7 +83,8 @@ module.exports = function(grunt) {
       },
       clean: {
          dist: ["dist/*"],
-         gitprep: ['dist', 'bower_components', 'node_modules']
+         gitprep: ['dist', 'bower_components', 'node_modules'],
+         preBuild: ['css/built-*']
       },
       less: {
          mixin: {
@@ -98,25 +99,18 @@ module.exports = function(grunt) {
                banner: '<%= banner %>',
                stripBanners: false,
                sourceMap: true,
-               sourceMapFilename: 'dist/css/<%= pkg.name %>-v<%= pkg.version %>.css.map'
+               sourceMapFilename: 'dist/css/<%= pkg.gname %>-v<%= pkg.version %>.css.map'
             },
             src: ['css/less/build.less'],
-            dest: 'css/built-bootstrap+mr.css'
-         },
-         overrides: {
-            options: {
-               sourceMap: false,
-            },
-            src: ['css/less/components/plugin-overrides.less'],
-            dest: 'css/built-plugin-overrides.css'
-         },
+            dest: 'css/built-bootstrap+<%= pkg.gname %>.css'
+         }
       },
       watch: {
          options: {
             livereload: true
          },
          less:{
-            files: ['css/less/**', 'css/**'],
+            files: ['css/less/**'],
             tasks: ['css']
          },
          js:{
@@ -127,23 +121,52 @@ module.exports = function(grunt) {
             files: ['*.php', '*.html', 'includes/**' ],
             tasks: []
          },
+         md:{
+            files: ['*.md'],
+            tasks: ['md2html']
+         }
       },
       'sftp-deploy': {
-         full: {
+         deploy: {
             auth: {
-               host: 'HOSTNAMEIPADDRESS',
+               host: '<%= pkg.url %>',
                port: 22,
                authKey: 'key1'
             },
-            src: '../project-init-php/',
-            dest: '/location/from/server/root/',
+            src: '../ROOTFOLDER',
+            dest: '/SERVERLOCATION',
             exclusions: [
                'bower_components',
                'node_modules',
                '.DS_Store',
                '.gitignore',
-               '.git'
+               '.git',
+               '.*',
+               'img',
+               'fonts',
             ],
+            progress: true
+         },
+         img: {
+            auth: {
+               host: '<%= pkg.url %>',
+               port: 22,
+               authKey: 'key1'
+            },
+            src: '../ROOTFOLDER/img',
+            dest: '/SERVERLOCATION/img',
+            exclusions: ['.DS_Store'],
+            progress: true
+         },
+         js: {
+            auth: {
+               host: '<%= pkg.url %>',
+               port: 22,
+               authKey: 'key1'
+            },
+            src: '../ROOTFOLDER/dist/js',
+            dest: '/SERVERLOCATION/dist/js',
+            exclusions: ['.DS_Store'],
             progress: true
          }
       },
@@ -161,11 +184,19 @@ module.exports = function(grunt) {
       },
       replace: {
          glyphicon: {
-            src: ['dist/css/*'],             // source files array (supports minimatch)
-            dest: 'dist/css/',             // destination directory or file
+            src: ['dist/css/*'],
+            dest: 'dist/css/',
             replacements: [{
-               from: 'glyphicon',                   // string replacement
+               from: 'glyphicon',
                to: 'fa'
+            }]
+         }
+      },
+      md2html: {
+         include: {
+            files: [{
+               src: ['README.md'],
+               dest: 'includes/ui/README.html'
             }]
          }
       }
@@ -181,20 +212,21 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-sftp-deploy');
    grunt.loadNpmTasks('grunt-autoprefixer');
    grunt.loadNpmTasks('grunt-text-replace');
-   //img-min //SETUP
+   grunt.loadNpmTasks('grunt-md2html');
 
    // Meta-task runners
-   grunt.registerTask('copy-stack', ['copy:fonts', 'copy:select2']);
+   grunt.registerTask('copy-stack', ['copy:rand', 'copy:fonts', 'copy:select2', 'copy:icheck']);
 
-   //Slim task runners
-   grunt.registerTask('default', ['less:dev', 'concat:js', 'watch']);
-   grunt.registerTask('css', ['less:dev', 'concat:css', 'replace', 'autoprefixer', 'watch']);
-   grunt.registerTask('js', ['concat:js', 'watch']);
+   // Slim task runners
+   grunt.registerTask('default', ['less:dev', 'concat:js', 'clean:preBuild', 'watch']);
+   grunt.registerTask('css', ['less:dev', 'concat:css', 'replace', 'autoprefixer', 'clean:preBuild']);
+   grunt.registerTask('js', ['concat:js']);
 
-   //Production ready task runners
-   grunt.registerTask('full', ['clean:dist', 'copy-stack', 'less', 'concat', 'replace', 'autoprefixer', 'cssmin', 'uglify']);
-   grunt.registerTask('reallyfull', ['full']);
-   grunt.registerTask('deploy', ['sftp-deploy']);
+   // Production ready task runners
+   grunt.registerTask('full', ['clean:dist', 'copy-stack', 'less', 'concat', 'replace', 'autoprefixer', 'cssmin', 'uglify', 'md2html', 'clean:preBuild']);
+   grunt.registerTask('deploy', ['sftp-deploy:deploy']);
+   grunt.registerTask('deployjs', ['sftp-deploy:js']);
 
+   // Git preparation
    grunt.registerTask('gitprep', ['clean:gitprep']);
 };
