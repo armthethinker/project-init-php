@@ -104,9 +104,9 @@ The CSS is often written in <a href="lesscss.org/">Less</a>, a CSS preprocessor.
 
 #### JS
 - <a href="http://getbootstrap.com/">Bootstrap</a>: HTML, CSS, and JS framework.
-- <a href="http://select2.github.io/">Select2</a>: more robust select tool.
 - <a href="https://github.com/ryhan/fixie">FixieJS</a>: adds filler text (DEV).
 - <a href="http://imsky.github.io/holder/">HolderJS</a>: adds filler images (DEV).
+- <a href="http://select2.github.io/">Select2</a>: more robust select tool.
 - <a href="https://github.com/bryanbraun/anchorjs">Anchor</a>: builds inline anchors for our docs.
 - <a href="https://github.com/flesler/jquery.scrollTo">ScrollTo</a>: smooth in-page link scrolling.
 - <a href="http://fronteed.com/iCheck/">iCheck</a>: better checkboxes and radios.
