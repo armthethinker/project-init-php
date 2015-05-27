@@ -46,6 +46,8 @@ $ grunt full
 <h3 id="-code-grunt-deploy-code-production-"><code>$ grunt deploy</code> (production)</h3>
 <p>Deploys all code except for <code>/img/</code>, via SFTP, to the specified server.</p>
 <p>You&#39;ll need to set up a <code>.ftppass</code> with your magic username and password in it. Rename <code>.ftppass-template</code> to <code>.ftppass</code> and follow the instructions. Don&#39;t worry, Git will ignore your password.</p>
+<h3 id="-code-grunt-cleanup-code-"><code>$ grunt cleanup</code></h3>
+<p>Cleans your folder tree of <code>/bower_components/</code>, <code>/node_modules/</code>, and <code>/dist/</code>.</p>
 <h3 id="grunt-tasks">Grunt Tasks</h3>
 <ul>
 <li><a href="https://github.com/nDmitry/grunt-autoprefixer">Autoprefixer</a>: vendor prefixes for CSS, adds and removes based on the browser variable.</li>
@@ -83,9 +85,9 @@ $ grunt full
 <h4 id="js">JS</h4>
 <ul>
 <li><a href="http://getbootstrap.com/">Bootstrap</a>: HTML, CSS, and JS framework.</li>
-<li><a href="http://select2.github.io/">Select2</a>: more robust select tool.</li>
 <li><a href="https://github.com/ryhan/fixie">FixieJS</a>: adds filler text (DEV).</li>
 <li><a href="http://imsky.github.io/holder/">HolderJS</a>: adds filler images (DEV).</li>
+<li><a href="http://select2.github.io/">Select2</a>: more robust select tool.</li>
 <li><a href="https://github.com/bryanbraun/anchorjs">Anchor</a>: builds inline anchors for our docs.</li>
 <li><a href="https://github.com/flesler/jquery.scrollTo">ScrollTo</a>: smooth in-page link scrolling.</li>
 <li><a href="http://fronteed.com/iCheck/">iCheck</a>: better checkboxes and radios.</li>
