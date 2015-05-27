@@ -88,7 +88,7 @@ module.exports = function(grunt) {
       },
       clean: {
          dist: ["dist/*"],
-         cleanup: ['dist', 'bower_components', 'node_modules'],
+         cleanup: ['dist', 'bower_components', 'node_modules', 'includes/ui/README.html'],
          preBuild: ['css/built-*']
       },
       less: {
