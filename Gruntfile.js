@@ -214,7 +214,7 @@ module.exports = function(grunt) {
    grunt.loadNpmTasks('grunt-text-replace');
    grunt.loadNpmTasks('grunt-md2html');
 
-   // Meta-task runners
+   // Utility runners
    grunt.registerTask('copy-stack', ['copy:rand', 'copy:fonts', 'copy:select2', 'copy:icheck']);
 
    // Slim task runners
