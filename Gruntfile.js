@@ -13,21 +13,26 @@ module.exports = function(grunt) {
             separator: '\n'
          },
          css: {
-            src: ['css/built-bootstrap+<%= pkg.name %>.css',
-                  'css/plugins/font-awesome.css',
-                  'css/plugins/animate.css',
-                  'css/plugins/select2.css',
-                  'css/plugins/select2-bootstrap.css',
-                  'css/built-plugin-overrides.css'],
-            dest: 'dist/css/<%= pkg.name %>-v<%= pkg.version %>.css'
+            src: ['css/built-bootstrap+<%= pkg.gname %>.css',
+                  'bower_components/fontawesome/css/font-awesome.min.css',
+                  'bower_components/animate.css/animate.min.css',
+                  'bower_components/select2/select2.css',
+                  'bower_components/select2/select2-bootstrap.css',
+                  'bower_components/anchor-js/anchor.css',
+                  'bower_components/icheck/skins/flat/red.css'
+                  ],
+            dest: 'dist/css/<%= pkg.gname %>-v<%= pkg.version %>.css'
          },
          js: {
             src: ['js/bootstrap.min.js',
-                  'js/plugins/select2.js',
-                  'js/plugins/fixie.js',
-                  'js/plugins/holder.js',
-                  'js/<%= pkg.name %>-v<%= pkg.version %>.js'],
-            dest: 'dist/js/<%= pkg.name %>-v<%= pkg.version %>.js'
+                  'bower_components/fixie/fixie.min.js',
+                  'bower_components/holderjs/holder.min.js',
+                  'bower_components/select2/select2.js',
+                  'bower_components/anchor-js/anchor.js',
+                  'bower_components/jquery.scrollTo/jquery.scrollTo.min.js',
+                  'bower_components/icheck/icheck.min.js',
+                  'js/<%= pkg.gname %>.js'],
+            dest: 'dist/js/<%= pkg.gname %>-v<%= pkg.version %>.js'
          }
       },
       uglify: {
@@ -59,12 +64,22 @@ module.exports = function(grunt) {
             src: 'img/select2/*',
             dest: 'dist/css/'
          },
-         // bower: {
-         //    flatten: true,
-         //    expand: true,
-         //    src: 'img/select2/*',
-         //    dest: 'dist/css/'
-         // },
+         icheck: {
+            options: {
+               noProcess: ['*.{png,gif,jpg,ico}'],
+            },
+            flatten: true,
+            expand: true,
+            src: ['bower_components/icheck/skins/flat/red.png',
+                  'bower_components/icheck/skins/flat/red@2x.png'],
+            dest: 'dist/css/'
+         },
+         rand: {
+            flatten: true,
+            expand: true,
+            src: 'bower_components/UIFunk/rand.php',
+            dest: 'includes/'
+         },
       },
       clean: {
          dist: ["dist/*"],
