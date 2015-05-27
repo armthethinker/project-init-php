@@ -1,4 +1,4 @@
-# project-init-php - *In Progress*
+# project-init-php
 This is a personal repository used to seed new apps written in PHP. It utilizes Grunt, Bower, and is built on Bootstrap.
 
 ## Getting Started
@@ -18,7 +18,7 @@ Next, run these tasks to get your environment situated and the files you need bu
 ```
 $ npm install
 $ bower update
-$ grunt full
+$ grunt setup
 ```
 All of your files should be set up and ready to go! Try <code>$ grunt</code> to start the persistent task.
 
@@ -63,8 +63,11 @@ Deploys all code except for <code>/img/</code>, via SFTP, to the specified serve
 
 You'll need to set up a <code>.ftppass</code> with your magic username and password in it. Rename <code>.ftppass-template</code> to <code>.ftppass</code> and follow the instructions. Don't worry, Git will ignore your password.
 
-### <code>$ grunt cleanup</code>
+### <code>$ grunt cleanup</code> (utility)
 Cleans your folder tree of <code>/bower_components/</code>, <code>/node_modules/</code>, and <code>/dist/</code>.
+
+### <code>$ grunt setup</code> (utility)
+This task does the inital build. It is mostly <code>$ grunt full</code>.
 
 ### Grunt Tasks
 - <a href="https://github.com/nDmitry/grunt-autoprefixer">Autoprefixer</a>: vendor prefixes for CSS, adds and removes based on the browser variable.

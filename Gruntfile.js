@@ -80,6 +80,11 @@ module.exports = function(grunt) {
             src: 'bower_components/UIFunk/rand.php',
             dest: 'includes/'
          },
+         lessvar: {
+            flatten: true,
+            src: 'bower_components/bootstrap/less/variables.less',
+            dest: 'css/less/'
+         }
       },
       clean: {
          dist: ["dist/*"],
@@ -216,6 +221,8 @@ module.exports = function(grunt) {
 
    // Utility runners
    grunt.registerTask('copy-stack', ['copy:rand', 'copy:fonts', 'copy:select2', 'copy:icheck']);
+   grunt.registerTask('cleanup', ['clean:cleanup']);
+   grunt.registerTask('setup', ['copy:lessvar', 'full']);
 
    // Slim task runners
    grunt.registerTask('default', ['less:dev', 'concat:js', 'clean:preBuild', 'watch']);
@@ -227,6 +234,4 @@ module.exports = function(grunt) {
    grunt.registerTask('deploy', ['sftp-deploy:deploy']);
    grunt.registerTask('deployjs', ['sftp-deploy:js']);
 
-   // Cleanup
-   grunt.registerTask('cleanup', ['clean:cleanup']);
 };
