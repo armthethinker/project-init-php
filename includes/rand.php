@@ -5,7 +5,7 @@ $phil = array(
    "Bertrand Russel",
    "Patricia Churchland",
    "W. V. O. Quine",
-   "Hillary Putnam",
+   "Hilary Putnam",
    "David Chalmers",
    "Noam Chomsky",
    "Daniel Dennet",
