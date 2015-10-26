@@ -8,7 +8,7 @@ $phil = array(
    "Hilary Putnam",
    "David Chalmers",
    "Noam Chomsky",
-   "Daniel Dennet",
+   "Daniel Dennett",
    "Alvin Plantinga",
    "Thomas Hobbes",
    "Jean-Paul Sartre",
